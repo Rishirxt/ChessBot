@@ -5,22 +5,26 @@ public class Piece {
 
     public Type type;
     public boolean isWhite;
+    public boolean hasMoved = false;
 
     public Piece(Type type, boolean isWhite) {
         this.type = type;
         this.isWhite = isWhite;
     }
 
+    public String getSymbol() {
+        return switch (type) {
+            case PAWN -> isWhite ? "\u2659" : "\u265F";
+            case ROOK -> isWhite ? "\u2656" : "\u265C";
+            case KNIGHT -> isWhite ? "\u2658" : "\u265E";
+            case BISHOP -> isWhite ? "\u2657" : "\u265D";
+            case QUEEN -> isWhite ? "\u2655" : "\u265B";
+            case KING -> isWhite ? "\u2654" : "\u265A";
+        };
+    }
+
     @Override
     public String toString() {
-        switch (type) {
-            case PAWN: return isWhite ? "♙" : "♟";
-            case ROOK: return isWhite ? "♖" : "♜";
-            case KNIGHT: return isWhite ? "♘" : "♞";
-            case BISHOP: return isWhite ? "♗" : "♝";
-            case QUEEN: return isWhite ? "♕" : "♛";
-            case KING: return isWhite ? "♔" : "♚";
-            default: return "";
-        }
+        return getSymbol();
     }
 }
